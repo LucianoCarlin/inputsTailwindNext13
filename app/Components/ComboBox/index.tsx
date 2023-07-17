@@ -1,126 +1,93 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef } from 'react';
 
-interface ComboBoxProps {
+interface AutocompleteProps {
   id: string;
   label: string;
-  options: { value: string; label: string }[];
 }
 
-export function ComboBox({ id, label, options }: ComboBoxProps) {
-  const [selectedOption, setSelectedOption] = useState("");
-  const [filterValue, setFilterValue] = useState("");
+const options = [
+  { value: 'Option 1', label: 'Option 1' },
+  { value: 'Option 2', label: 'Option 2' },
+  { value: 'Option 3', label: 'Option 3' },
+  { value: 'Option 4', label: 'Option 4' },
+];
+
+export function AutocompleteCombo({ id, label }: AutocompleteProps) {
+  const [value, setValue] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const filteredOptions = options.filter((option) =>
-    option.label.toLowerCase().includes(filterValue.toLowerCase())
-  );
-
-  const handleSelectOption = (option: { value: string; label: string }) => {
-    setSelectedOption(option.value);
-    setFilterValue("");
-    setIsOpen(false);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
   };
 
-  const handleToggleOpen = () => {
-    setIsOpen(!isOpen);
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-  };
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFilterValue(event.target.value);
-  };
-
-  const handleInputFocus = () => {
+  const handleOpen = () => {
     setIsFocused(true);
     setIsOpen(true);
   };
 
-  const handleInputBlur = () => {
+  const handleClose = () => {
     setIsFocused(false);
-    setTimeout(() => {
-      setIsOpen(false);
-    }, 200);
+    setIsOpen(false);
   };
 
+  const handleSelectOption = (option: { value: string; label: string }) => {
+    setValue(option.label);
+    setIsOpen(false);
+    inputRef.current?.focus();
+  };
+
+  const filteredOptions = options.filter((option) =>
+    option.label.toLowerCase().includes(value.toLowerCase())
+  );
+
   return (
-    <div className={`relative ${isFocused || selectedOption ? "mt-2" : ""}`}>
-      <label
-        htmlFor={id}
-        className={`absolute left-2 transition-all duration-200 ${
-          isFocused || selectedOption
-            ? "-top-2 text-xs font-semibold text-gray-500"
-            : "top-2 text-base"
-        } bg-white px-1`}
-        style={{ zIndex: isOpen ? 10 : undefined }}
-      >
-        {label}
-      </label>
-      <div className="relative mt-1">
+    <div className={`relative ${isFocused || value ? 'mt-2' : ''}`}>
+      <div className="relative">
         <input
           type="text"
-          id={`${id}-input`}
+          id={id}
+          value={value}
+          onChange={handleChange}
+          onFocus={handleOpen}
+          onBlur={handleClose}
           ref={inputRef}
-          value={filterValue}
-          onChange={handleInputChange}
-          onClick={handleToggleOpen}
-          onFocus={handleInputFocus}
-          onBlur={handleInputBlur}
-          className={`w-full p-2 pl-3 appearance-none focus:outline-none ${
+          className={`w-full p-2 pl-3 focus:outline-none ${
             isFocused
-              ? "border-gray-500 border-2 shadow-md"
-              : "border-gray-300 hover:border-gray-400"
+              ? 'border-gray-500 border-2 shadow-md'
+              : 'border-gray-300 hover:border-gray-400'
           } border border-gray-300 rounded-md`}
-          placeholder={label}
           autoComplete="off"
+          aria-label={label}
         />
-        {isOpen && (
-          <ul
-            id={`${id}-listbox`}
-            tabIndex={-1}
-            role="listbox"
-            aria-labelledby={`${id}-label`}
-            aria-activedescendant={`${id}-${selectedOption}`}
-            className="absolute z-10 w-full py-1 mt-1 overflow-auto bg-white shadow-lg max-h-60 rounded-md text-base ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
-          >
-            {filteredOptions.map((option) => (
-              <li
-                key={option.value}
-                id={`${id}-${option.value}`}
-                role="option"
-                onClick={() => handleSelectOption(option)}
-                className={`text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9 ${
-                  option.value === selectedOption ? "bg-blue-100" : ""
-                }`}
-              >
-                <span className="font-normal block truncate">
-                  {option.label}
-                </span>
-                {option.value === selectedOption && (
-                  <span className="text-blue-600 absolute inset-y-0 right-0 flex items-center pr-4">
-                    <svg
-                      className="h-5 w-5"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 3a1 1 0 01.707.293l4 4a1 1 0 01-1.414 1.414L11 6.414V16a1 1 0 01-2 0V6.414L5.707 8.707A1 1 0 014.293 7.293l4-4A1 1 0 0110 3z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </span>
-                )}
-              </li>
-            ))}
-          </ul>
-        )}
+        <label
+          htmlFor={id}
+          className={`absolute left-2 transition-all duration-200 ${
+            isFocused || value
+              ? '-top-2 text-xs font-semibold text-gray-500'
+              : 'top-2 text-base'
+          } bg-white px-1 pointer-events-none`}
+        >
+          {label}
+        </label>
       </div>
+      {isOpen && (
+        <ul
+          className="absolute z-10 w-full py-2 mt-1 overflow-auto bg-white shadow-lg max-h-60 rounded-md"
+          onBlur={handleClose}
+        >
+          {filteredOptions.map((option) => (
+            <li
+              key={option.value}
+              onClick={() => handleSelectOption(option)}
+              className="px-4 py-2 cursor-pointer hover:bg-gray-200"
+            >
+              {option.label}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
