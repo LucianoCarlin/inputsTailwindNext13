@@ -1,14 +1,23 @@
-'use client';
-import { useState } from 'react';
-import * as Dialog from '@radix-ui/react-dialog';
-import { useSpring, animated, config } from 'react-spring';
-import { useLottieAnimation } from './hooks/useLottie/useLottieAnimation';
-import dataLoaderWindel from './assets/lotties/loader-windel.json';
-import { InputWithOverlappingLabel } from './Components/Input';
-import { options } from './Interfaces/combobox';
-import { Autocomplete } from './Components/AutoComplete';
-import { AutocompleteCombo } from './Components/ComboBox';
-import Calendar from './Components/Calendar';
+"use client";
+import { useState } from "react";
+import * as Dialog from "@radix-ui/react-dialog";
+import { useSpring, animated, config } from "react-spring";
+import { useLottieAnimation } from "./hooks/useLottie/useLottieAnimation";
+import dataLoaderWindel from "./assets/lotties/loader-windel.json";
+
+import { options } from "./Interfaces/combobox";
+import { Autocomplete } from "./Components/AutoComplete";
+import { AutocompleteCombo } from "./Components/ComboBox";
+import Calendar from "./Components/Calendar";
+import { InputRoot } from "./Components/Input/InputRoot";
+import { CepInput } from "./Components/Input/InputCep";
+import { CnpjInput } from "./Components/Input/InputCnpj";
+import { CpfInput } from "./Components/Input/InputCpf";
+import { DecimalInput } from "./Components/Input/InputDecimal";
+import { EmailInput } from "./Components/Input/InputEmail";
+import { PasswordInput } from "./Components/Input/InputPassword";
+import { PercentageInput } from "./Components/Input/InputPercent";
+import { CurrencyInput } from "./Components/Input/InputCurrency";
 
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
@@ -31,22 +40,28 @@ export default function Login() {
 
   const formSpringProps = useSpring({
     opacity: showForm ? 1 : 0,
-    transform: `translateY(${showForm ? '0%' : '100%'})`,
+    transform: `translateY(${showForm ? "0%" : "100%"})`,
     config: config.default,
   });
 
   const loadingSpringProps = useSpring({
     opacity: isLoading ? 1 : 0,
-    transform: `translateY(${isLoading ? '0%' : '100%'})`,
+    transform: `translateY(${isLoading ? "0%" : "100%"})`,
     config: config.default,
   });
 
   return (
     <main className="flex min-h-screen items-center justify-center p-24">
       <div className="w-72">
-        <div className="container mx-auto p-4 space-y-10">
-          <InputWithOverlappingLabel id="label" label="Email" />
-          <Calendar />
+        <div className="container mx-auto p-4 space-y-4">
+          <PasswordInput id="password" />
+          <CepInput id="cep" />
+          <CnpjInput id="cnpj" />
+          <CpfInput id="cpf" />
+          <DecimalInput id="decimal" decimalPlaces={2} />
+          <CurrencyInput id="currency" />
+          <PercentageInput id="percentage" />
+          <EmailInput id="email" />
           {/*  <AutocompleteCombo id="myComboBox" label="List" />
           <Autocomplete id="1" label="List two" options={options} /> */}
         </div>
@@ -92,7 +107,7 @@ export default function Login() {
               transform: loadingSpringProps.transform,
             }}
           >
-            <Dialog.Content style={{ width: '200px', height: '200px' }}>
+            <Dialog.Content style={{ width: "200px", height: "200px" }}>
               <div className="flex justify-center items-center h-full">
                 {lottieView}
               </div>
