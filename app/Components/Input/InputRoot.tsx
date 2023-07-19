@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 interface InputRootProps {
   id: string;
@@ -16,7 +16,7 @@ export function InputRoot({
   label,
   value,
   onChange,
-  type = 'text',
+  type = "text",
   leftIcon,
   rightIcon,
   onRightIconClick,
@@ -27,7 +27,7 @@ export function InputRoot({
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
     onChange(newValue);
-    setHasValue(newValue !== '');
+    setHasValue(newValue !== "");
   };
 
   const handleFocus = () => {
@@ -36,7 +36,7 @@ export function InputRoot({
 
   const handleBlur = () => {
     setIsFocused(false);
-    setHasValue(value !== '');
+    setHasValue(value !== "");
   };
 
   const isOutlined = true;
@@ -48,16 +48,16 @@ export function InputRoot({
   };
 
   return (
-    <div className={`relative ${isOutlined ? 'rounded-md' : ''}`}>
+    <div className={`relative ${isOutlined ? "rounded-md" : ""}`}>
       <label
         htmlFor={id}
         className={`absolute left-3 transition-all duration-200 ${
           isFocused || hasValue
-            ? '-top-2 text-xs font-semibold text-gray-500'
-            : 'top-2 text-base'
-        } ${isOutlined ? 'bg-white px-1' : ''} ${leftIcon ? 'pl-4' : ''} ${
-          isFocused && leftIcon ? 'mt-0 left-5 pl-1' : ''
-        }`}
+            ? "-top-2 text-xs font-semibold text-gray-500"
+            : "top-2 text-base"
+        } ${isOutlined ? "bg-white px-1" : ""} ${
+          leftIcon ? "pl-4 left-2" : ""
+        } ${isFocused && leftIcon ? "mt-0 pl-1" : ""}`}
       >
         {label}
       </label>
@@ -65,7 +65,7 @@ export function InputRoot({
         {leftIcon && (
           <div className="absolute left-2 flex items-center h-full pointer-events-none">
             {React.cloneElement(leftIcon as React.ReactElement, {
-              className: 'text-gray-500',
+              className: "text-gray-500",
             })}
           </div>
         )}
@@ -77,13 +77,13 @@ export function InputRoot({
           onFocus={handleFocus}
           onBlur={handleBlur}
           className={`w-full p-2 ${
-            leftIcon ? 'pl-6' : 'pl-3'
+            leftIcon ? "pl-6" : "pl-3"
           } focus:outline-none ${
-            isOutlined ? 'border rounded-md box-content' : 'border'
+            isOutlined ? "border rounded-md box-content" : "border"
           } ${
             isFocused
-              ? 'border-gray-500 border-1 shadow-md'
-              : 'border-gray-300 hover:border-gray-400'
+              ? "border-gray-500 border-1 shadow-md"
+              : "border-gray-300 hover:border-gray-400"
           }`}
         />
         {rightIcon && (
@@ -92,7 +92,7 @@ export function InputRoot({
             onClick={handleRightIconClick}
           >
             {React.cloneElement(rightIcon as React.ReactElement, {
-              className: 'text-gray-500',
+              className: "text-gray-500",
             })}
           </div>
         )}
