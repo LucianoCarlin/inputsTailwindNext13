@@ -9,8 +9,7 @@ interface DecimalInputProps {
 export function DecimalInput({ id, decimalPlaces }: DecimalInputProps) {
   const [value, setValue] = useState("");
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = event.target.value;
+  const handleChange = (newValue: string) => {
     setValue(newValue);
   };
 
@@ -20,7 +19,13 @@ export function DecimalInput({ id, decimalPlaces }: DecimalInputProps) {
     const parts = formattedValue.split(",");
     const integerPart = parts[0];
     let decimalPart = parts[1] || "";
-    decimalPart = decimalPart.slice(0, decimalPlaces);
+    if (decimalPart.length > decimalPlaces) {
+      decimalPart = decimalPart.slice(0, decimalPlaces);
+    } else {
+      while (decimalPart.length < decimalPlaces) {
+        decimalPart += "0";
+      }
+    }
     formattedValue =
       decimalPart.length > 0 ? `${integerPart},${decimalPart}` : integerPart;
     return formattedValue;
@@ -37,9 +42,9 @@ export function DecimalInput({ id, decimalPlaces }: DecimalInputProps) {
         id={id}
         label="Decimal"
         value={value}
-        onChange={handleChange}
+        onInputChange={handleChange}
+        onBlurCapture={handleBlur}
       />
-      <button onClick={handleBlur}>Apply Formatting</button>
     </div>
   );
 }

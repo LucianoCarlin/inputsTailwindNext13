@@ -16,7 +16,7 @@ export default function Login() {
         <CepInput id="cep" />
         <CnpjInput id="cnpj" />
         <CpfInput id="cpf" />
-        <DecimalInput id="decimal" decimalPlaces={2} />
+        <DecimalInput id="decimal" decimalPlaces={3} />
         <CurrencyInput id="currency" />
         <PercentageInput id="percentage" />
         <EmailInput id="email" />

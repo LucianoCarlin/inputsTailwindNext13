@@ -17,7 +17,7 @@ export function EmailInput({ id }: EmailInputProps) {
       id={id}
       label="Email"
       value={value}
-      onChange={handleChange}
+      onInputChange={handleChange}
       type="email"
     />
   );

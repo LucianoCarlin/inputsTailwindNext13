@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-interface InputRootProps {
+interface InputRootProps extends React.InputHTMLAttributes<HTMLInputElement> {
   id: string;
   label: string;
-  value: string;
-  onChange: (value: string) => void;
+  value: string | number; // Altere para aceitar number também, se necessário
+  onInputChange: (value: string) => void; // Renomeie a propriedade para evitar conflito
   type?: string;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
@@ -15,18 +15,19 @@ export function InputRoot({
   id,
   label,
   value,
-  onChange,
+  onInputChange,
   type = "text",
   leftIcon,
   rightIcon,
   onRightIconClick,
+  ...rest
 }: InputRootProps) {
   const [isFocused, setIsFocused] = useState(false);
   const [hasValue, setHasValue] = useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
-    onChange(newValue);
+    onInputChange(newValue);
     setHasValue(newValue !== "");
   };
 
@@ -56,7 +57,7 @@ export function InputRoot({
             ? "-top-2 text-xs font-semibold text-gray-500"
             : "top-2 text-base"
         } ${isOutlined ? "bg-white px-1" : ""} ${
-          leftIcon ? "pl-4 left-2" : ""
+          leftIcon ? "pl-1 left-4" : ""
         } ${isFocused && leftIcon ? "mt-0 pl-1" : ""}`}
       >
         {label}
@@ -70,6 +71,7 @@ export function InputRoot({
           </div>
         )}
         <input
+          {...rest}
           type={type}
           id={id}
           value={value}

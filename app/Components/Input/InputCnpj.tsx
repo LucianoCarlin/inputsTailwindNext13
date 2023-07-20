@@ -9,7 +9,6 @@ export function CnpjInput({ id }: CnpjInputProps) {
   const [value, setValue] = useState("");
 
   const handleChange = (newValue: string) => {
-    // Adicione lógica de máscara de CNPJ para formatar o valor
     const maskedValue = newValue.replace(
       /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/,
       "$1.$2.$3/$4-$5"
@@ -18,6 +17,11 @@ export function CnpjInput({ id }: CnpjInputProps) {
   };
 
   return (
-    <InputRoot id={id} label="CNPJ" value={value} onChange={handleChange} />
+    <InputRoot
+      id={id}
+      label="CNPJ"
+      value={value}
+      onInputChange={handleChange}
+    />
   );
 }
