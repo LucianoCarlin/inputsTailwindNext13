@@ -7,26 +7,32 @@ interface PercentageInputProps {
 }
 
 export function PercentageInput({ id }: PercentageInputProps) {
-  const [value, setValue] = useState("");
+  const [rawValue, setRawValue] = useState("");
 
   const handleChange = (newValue: string) => {
-    setValue(newValue);
+    setRawValue(newValue);
   };
 
-  const handleBlur = (e: FormEvent<HTMLInputElement>) => {
-    let numericValue = e.currentTarget.value.replace(/[^\d.]/g, "");
-    if (numericValue) {
-      const roundedValue = parseFloat(numericValue).toFixed(2);
-      const formattedValue = `${roundedValue.replace(".", ",")}`;
-      setValue(formattedValue);
+  const formatValue = (value: string) => {
+    let numericValue = value.replace(",", ".");
+    const numeric = parseFloat(numericValue);
+    if (!isNaN(numeric)) {
+      return numeric.toFixed(2).replace(".", ",");
+    } else {
+      return "";
     }
+  };
+
+  const handleBlur = () => {
+    const formattedValue = formatValue(rawValue);
+    setRawValue(formattedValue);
   };
 
   return (
     <InputRoot
       id={id}
       label="Percentage"
-      value={value}
+      value={rawValue}
       onInputChange={handleChange}
       onBlurCapture={handleBlur}
       leftIcon={<MdPercent />}

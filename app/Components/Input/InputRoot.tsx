@@ -57,14 +57,14 @@ export function InputRoot({
             ? "-top-2 text-xs font-semibold text-gray-500"
             : "top-2 text-base"
         } ${isOutlined ? "bg-white px-1" : ""} ${
-          leftIcon ? "pl-1 left-4" : ""
+          leftIcon ? "pl-1 left-4 ml-2" : ""
         } ${isFocused && leftIcon ? "mt-0 pl-1" : ""}`}
       >
         {label}
       </label>
       <div className="flex items-center">
         {leftIcon && (
-          <div className="absolute left-2 flex items-center h-full pointer-events-none">
+          <div className="absolute left-2  flex items-center h-full pointer-events-none">
             {React.cloneElement(leftIcon as React.ReactElement, {
               className: "text-gray-500",
             })}

@@ -31,9 +31,11 @@ export function DecimalInput({ id, decimalPlaces }: DecimalInputProps) {
     return formattedValue;
   };
 
-  const handleBlur = () => {
-    const formattedValue = formatValue(value);
-    setValue(formattedValue);
+  const handleBlur = (e: any) => {
+    if (e.target.value) {
+      const formattedValue = formatValue(value);
+      setValue(formattedValue);
+    }
   };
 
   return (

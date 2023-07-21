@@ -20,8 +20,6 @@ export default function Login() {
         <CurrencyInput id="currency" />
         <PercentageInput id="percentage" />
         <EmailInput id="email" />
-        {/*  <AutocompleteCombo id="myComboBox" label="List" />
-          <Autocomplete id="1" label="List two" options={options} /> */}
       </div>
     </main>
   );
