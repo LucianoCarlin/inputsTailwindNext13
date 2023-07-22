@@ -7,19 +7,21 @@ import { EmailInput } from "./Components/Input/InputEmail";
 import { PasswordInput } from "./Components/Input/InputPassword";
 import { PercentageInput } from "./Components/Input/InputPercent";
 import { CurrencyInput } from "./Components/Input/InputCurrency";
+import { TextInput } from "./Components/Input/InputText";
 
 export default function Login() {
   return (
     <main className="flex min-h-screen p-4">
       <div className="container mx-auto space-y-4 w-screen">
-        <PasswordInput id="password" />
-        <CepInput id="cep" />
-        <CnpjInput id="cnpj" />
-        <CpfInput id="cpf" />
-        <DecimalInput id="decimal" decimalPlaces={3} />
-        <CurrencyInput id="currency" />
-        <PercentageInput id="percentage" />
-        <EmailInput id="email" />
+        <PasswordInput id="password" label="Password" />
+        <CepInput id="cep" label="CEP" />
+        <CnpjInput id="cnpj" label="CNPJ" />
+        <CpfInput id="cpf" label="CPF" />
+        <DecimalInput id="decimal" decimalPlaces={3} label="Decimal" />
+        <CurrencyInput id="currency" label="Currency" />
+        <PercentageInput id="percentage" label="Percentage" />
+        <EmailInput id="email" label="Email" />
+        <TextInput id="inputText" label="Texto" />
       </div>
     </main>
   );

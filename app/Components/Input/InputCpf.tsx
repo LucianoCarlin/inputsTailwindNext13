@@ -3,9 +3,17 @@ import { InputRoot } from "./InputRoot";
 
 interface CpfInputProps {
   id: string;
+  label: string;
+  initialValue?: string; // Allow passing `initialValue` prop storybook
+  isDisabled?: boolean; // Allow passing `isDisabled` prop storybook
 }
 
-export function CpfInput({ id }: CpfInputProps) {
+export function CpfInput({
+  id,
+  label,
+  initialValue = "",
+  isDisabled = false,
+}: CpfInputProps) {
   const [value, setValue] = useState("");
 
   const handleChange = (newValue: string) => {
@@ -17,6 +25,12 @@ export function CpfInput({ id }: CpfInputProps) {
   };
 
   return (
-    <InputRoot id={id} label="CPF" value={value} onInputChange={handleChange} />
+    <InputRoot
+      id={id}
+      label={label}
+      value={value}
+      onInputChange={handleChange}
+      disabled={isDisabled}
+    />
   );
 }

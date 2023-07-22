@@ -1,23 +1,24 @@
 import React, { useState } from "react";
 import { InputRoot } from "./InputRoot";
 
-interface EmailInputProps {
+export interface TextInputProps {
   id: string;
   label: string;
   initialValue?: string; // Allow passing `initialValue` prop storybook
   isDisabled?: boolean; // Allow passing `isDisabled` prop storybook
 }
 
-export function EmailInput({
+export function TextInput({
   id,
   label,
   initialValue = "",
   isDisabled = false,
-}: EmailInputProps) {
+}: TextInputProps) {
   const [value, setValue] = useState("");
 
   const handleChange = (newValue: string) => {
-    setValue(newValue);
+    const maskedValue = newValue.replace(/^(\d{5})(\d{3})?$/, "$1-$2");
+    setValue(maskedValue);
   };
 
   return (
@@ -26,7 +27,6 @@ export function EmailInput({
       label={label}
       value={value}
       onInputChange={handleChange}
-      type="email"
       disabled={isDisabled}
     />
   );

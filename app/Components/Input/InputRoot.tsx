@@ -9,6 +9,7 @@ interface InputRootProps extends React.InputHTMLAttributes<HTMLInputElement> {
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
   onRightIconClick?: () => void;
+  disabled: boolean;
 }
 
 export function InputRoot({
@@ -20,6 +21,7 @@ export function InputRoot({
   leftIcon,
   rightIcon,
   onRightIconClick,
+  disabled,
   ...rest
 }: InputRootProps) {
   const [isFocused, setIsFocused] = useState(false);
@@ -75,6 +77,7 @@ export function InputRoot({
           type={type}
           id={id}
           value={value}
+          disabled={disabled}
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}

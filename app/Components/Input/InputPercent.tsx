@@ -4,9 +4,17 @@ import { MdPercent } from "react-icons/md";
 
 interface PercentageInputProps {
   id: string;
+  label: string;
+  initialValue?: string; // Allow passing `initialValue` prop storybook
+  isDisabled?: boolean; // Allow passing `isDisabled` prop storybook
 }
 
-export function PercentageInput({ id }: PercentageInputProps) {
+export function PercentageInput({
+  id,
+  label,
+  initialValue = "",
+  isDisabled = false,
+}: PercentageInputProps) {
   const [rawValue, setRawValue] = useState("");
 
   const handleChange = (newValue: string) => {
@@ -31,11 +39,12 @@ export function PercentageInput({ id }: PercentageInputProps) {
   return (
     <InputRoot
       id={id}
-      label="Percentage"
+      label={label}
       value={rawValue}
       onInputChange={handleChange}
       onBlurCapture={handleBlur}
       leftIcon={<MdPercent />}
+      disabled={isDisabled}
     />
   );
 }

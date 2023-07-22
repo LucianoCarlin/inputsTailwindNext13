@@ -4,9 +4,17 @@ import { MdLock, MdVisibility, MdVisibilityOff } from "react-icons/md";
 
 interface PasswordInputProps {
   id: string;
+  label: string;
+  initialValue?: string; // Allow passing `initialValue` prop storybook
+  isDisabled?: boolean; // Allow passing `isDisabled` prop storybook
 }
 
-export function PasswordInput({ id }: PasswordInputProps) {
+export function PasswordInput({
+  id,
+  label,
+  initialValue = "",
+  isDisabled = false,
+}: PasswordInputProps) {
   const [value, setValue] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
@@ -21,7 +29,7 @@ export function PasswordInput({ id }: PasswordInputProps) {
   return (
     <InputRoot
       id={id}
-      label="Password"
+      label={label}
       value={value}
       onInputChange={handleChange}
       type={showPassword ? "text" : "password"}
@@ -33,6 +41,7 @@ export function PasswordInput({ id }: PasswordInputProps) {
           <MdVisibilityOff onClick={handleTogglePasswordVisibility} />
         )
       }
+      disabled={isDisabled}
     />
   );
 }

@@ -3,10 +3,19 @@ import { InputRoot } from "./InputRoot";
 
 interface DecimalInputProps {
   id: string;
+  label: string;
+  initialValue?: string; // Allow passing `initialValue` prop storybook
+  isDisabled?: boolean; // Allow passing `isDisabled` prop storybook
   decimalPlaces: number;
 }
 
-export function DecimalInput({ id, decimalPlaces }: DecimalInputProps) {
+export function DecimalInput({
+  id,
+  label,
+  decimalPlaces,
+  initialValue = "",
+  isDisabled = false,
+}: DecimalInputProps) {
   const [value, setValue] = useState("");
 
   const handleChange = (newValue: string) => {
@@ -42,10 +51,11 @@ export function DecimalInput({ id, decimalPlaces }: DecimalInputProps) {
     <div>
       <InputRoot
         id={id}
-        label="Decimal"
+        label={label}
         value={value}
         onInputChange={handleChange}
         onBlurCapture={handleBlur}
+        disabled={isDisabled}
       />
     </div>
   );

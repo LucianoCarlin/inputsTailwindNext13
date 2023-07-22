@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import { InputRoot } from "./InputRoot";
 
-interface CepInputProps {
+export interface CepInputProps {
   id: string;
+  label: string;
+  initialValue?: string; // Allow passing `initialValue` prop storybook
+  isDisabled?: boolean; // Allow passing `isDisabled` prop storybook
 }
 
-export function CepInput({ id }: CepInputProps) {
+export function CepInput({
+  id,
+  label,
+  initialValue = "CEP",
+  isDisabled = false,
+}: CepInputProps) {
   const [value, setValue] = useState("");
 
   const handleChange = (newValue: string) => {
@@ -14,6 +22,12 @@ export function CepInput({ id }: CepInputProps) {
   };
 
   return (
-    <InputRoot id={id} label="CEP" value={value} onInputChange={handleChange} />
+    <InputRoot
+      id={id}
+      label={label}
+      value={value}
+      onInputChange={handleChange}
+      disabled={isDisabled}
+    />
   );
 }

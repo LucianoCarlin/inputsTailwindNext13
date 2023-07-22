@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import { InputRoot } from "./InputRoot";
 
-interface CnpjInputProps {
+export interface CnpjInputProps {
   id: string;
+  label: string;
+  initialValue?: string; // Allow passing `initialValue` prop storybook
+  isDisabled?: boolean; // Allow passing `isDisabled` prop storybook
 }
 
-export function CnpjInput({ id }: CnpjInputProps) {
+export function CnpjInput({
+  id,
+  label,
+  initialValue = "",
+  isDisabled = false,
+}: CnpjInputProps) {
   const [value, setValue] = useState("");
 
   const handleChange = (newValue: string) => {
@@ -19,9 +27,10 @@ export function CnpjInput({ id }: CnpjInputProps) {
   return (
     <InputRoot
       id={id}
-      label="CNPJ"
+      label={label}
       value={value}
       onInputChange={handleChange}
+      disabled={isDisabled}
     />
   );
 }

@@ -3,6 +3,9 @@ import { InputRoot } from "./InputRoot";
 
 interface CurrencyInputProps {
   id: string;
+  label: string;
+  initialValue?: string; // Allow passing `initialValue` prop storybook
+  isDisabled?: boolean; // Allow passing `isDisabled` prop storybook
 }
 
 function currency(
@@ -29,7 +32,12 @@ function currency(
   }
 }
 
-export function CurrencyInput({ id }: CurrencyInputProps) {
+export function CurrencyInput({
+  id,
+  label,
+  initialValue = "",
+  isDisabled = false,
+}: CurrencyInputProps) {
   const [value, setValue] = useState("");
 
   const handleChange = (newValue: string) => {
@@ -39,10 +47,11 @@ export function CurrencyInput({ id }: CurrencyInputProps) {
   return (
     <InputRoot
       id={id}
-      label="Currency"
+      label={label}
       value={value}
       onInputChange={handleChange}
       onKeyUp={(e: FormEvent<HTMLInputElement>) => currency(e, setValue)}
+      disabled={isDisabled}
     />
   );
 }
