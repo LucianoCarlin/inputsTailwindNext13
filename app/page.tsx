@@ -21,7 +21,7 @@ export default function Login() {
         <CurrencyInput id="currency" label="Currency" />
         <PercentageInput id="percentage" label="Percentage" />
         <EmailInput id="email" label="Email" />
-        <TextInput id="inputText" label="Texto" />
+        <TextInput id="inputText" label="Texto" isDisabled={true} />
       </div>
     </main>
   );

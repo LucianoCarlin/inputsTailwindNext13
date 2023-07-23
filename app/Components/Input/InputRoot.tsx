@@ -60,11 +60,15 @@ export function InputRoot({
             : "top-2 text-base"
         } ${isOutlined ? "bg-white px-1" : ""} ${
           leftIcon ? "pl-1 left-4 ml-2" : ""
-        } ${isFocused && leftIcon ? "mt-0 pl-1" : ""}`}
+        } ${isFocused && leftIcon ? "mt-0 pl-1" : ""}
+        ${disabled ? "bg-gray-200" : ""}
+        `}
       >
         {label}
       </label>
-      <div className="flex items-center">
+      <div
+        className={`flex items-center ${disabled ? "cursor-not-allowed" : ""}`}
+      >
         {leftIcon && (
           <div className="absolute left-2  flex items-center h-full pointer-events-none">
             {React.cloneElement(leftIcon as React.ReactElement, {
@@ -89,6 +93,10 @@ export function InputRoot({
             isFocused
               ? "border-gray-500 border-1 shadow-md"
               : "border-gray-300 hover:border-gray-400"
+          }${
+            disabled
+              ? "cursor-not-allowed disabled:bg-gray-200 disabled:border-gray-300 disabled:text-gray-500"
+              : ""
           }`}
         />
         {rightIcon && (
