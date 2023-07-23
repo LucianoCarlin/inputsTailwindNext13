@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { InputRoot } from "./InputRoot";
 import { MdLock, MdVisibility, MdVisibilityOff } from "react-icons/md";
 
-interface PasswordInputProps {
+export interface PasswordInputProps {
   id: string;
   label: string;
   initialValue?: string; // Allow passing `initialValue` prop storybook

@@ -11,7 +11,7 @@ export interface CepInputProps {
 export function CepInput({
   id,
   label,
-  initialValue = "CEP",
+  initialValue = "",
   isDisabled = false,
 }: CepInputProps) {
   const [value, setValue] = useState("");

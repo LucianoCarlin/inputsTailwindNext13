@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { InputRoot } from "./InputRoot";
 
-interface EmailInputProps {
+export interface EmailInputProps {
   id: string;
   label: string;
   initialValue?: string; // Allow passing `initialValue` prop storybook

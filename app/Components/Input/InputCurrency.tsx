@@ -1,7 +1,7 @@
 import React, { FormEvent, useState } from "react";
 import { InputRoot } from "./InputRoot";
 
-interface CurrencyInputProps {
+export interface CurrencyInputProps {
   id: string;
   label: string;
   initialValue?: string; // Allow passing `initialValue` prop storybook

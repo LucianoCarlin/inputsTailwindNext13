@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { InputRoot } from "./InputRoot";
 
-interface DecimalInputProps {
+export interface DecimalInputProps {
   id: string;
   label: string;
   initialValue?: string; // Allow passing `initialValue` prop storybook

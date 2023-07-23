@@ -2,7 +2,7 @@ import React, { FormEvent, useState } from "react";
 import { InputRoot } from "./InputRoot";
 import { MdPercent } from "react-icons/md";
 
-interface PercentageInputProps {
+export interface PercentageInputProps {
   id: string;
   label: string;
   initialValue?: string; // Allow passing `initialValue` prop storybook

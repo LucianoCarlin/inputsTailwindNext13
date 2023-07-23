@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { InputRoot } from "./InputRoot";
 
-interface CpfInputProps {
+export interface CpfInputProps {
   id: string;
   label: string;
   initialValue?: string; // Allow passing `initialValue` prop storybook

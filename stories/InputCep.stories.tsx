@@ -1,5 +1,3 @@
-// InputCep.stories.tsx
-
 import { Meta, ComponentStory } from "@storybook/react";
 import { CepInput, CepInputProps } from "../app/Components/Input/InputCep";
 
