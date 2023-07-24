@@ -8,6 +8,7 @@ import { PasswordInput } from "./Components/Input/InputPassword";
 import { PercentageInput } from "./Components/Input/InputPercent";
 import { CurrencyInput } from "./Components/Input/InputCurrency";
 import { TextInput } from "./Components/Input/InputText";
+import { GridList } from "./Components/GridList";
 
 export default function Login() {
   return (
@@ -21,7 +22,15 @@ export default function Login() {
         <CurrencyInput id="currency" label="Currency" />
         <PercentageInput id="percentage" label="Percentage" />
         <EmailInput id="email" label="Email" />
-        <TextInput id="inputText" label="Texto" isDisabled={true} />
+        <TextInput id="inputText" label="Texto" />
+        <GridList>
+          <div className="bg-gray-200 p-4">Item 1</div>
+          <div className="bg-gray-200 p-4">Item 2</div>
+          <div className="bg-gray-200 p-4">Item 3</div>
+          <div className="bg-gray-200 p-4">Item 4</div>
+          <div className="bg-gray-200 p-4">Item 5</div>
+          <div className="bg-gray-200 p-4">Item 6</div>
+        </GridList>
       </div>
     </main>
   );
