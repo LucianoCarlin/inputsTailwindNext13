@@ -2,12 +2,18 @@ import React from "react";
 
 export interface GridListProps {
   children: React.ReactNode;
+  minColumns?: number;
+  maxColumns?: number;
 }
 
-export function GridList({ children }: GridListProps) {
-  return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4">
-      {children}
-    </div>
-  );
+export function GridList({
+  children,
+  minColumns = 1,
+  maxColumns = 6,
+}: GridListProps) {
+  const childArray = React.Children.toArray(children);
+  const itemCount = childArray.length;
+  const numColumns = Math.min(maxColumns, Math.max(minColumns, itemCount));
+
+  return <div className={`grid grid-cols-${numColumns} gap-4`}>{children}</div>;
 }

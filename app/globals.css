@@ -1,3 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .grid-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .grid-list {
+      justify-content: space-between;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .grid-list {
+      justify-content: space-between;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .grid-list {
+      justify-content: space-between;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .grid-list {
+      justify-content: space-between;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .grid-list {
+      justify-content: space-between;
+    }
+  }
+}
