@@ -23,13 +23,12 @@ export default function Login() {
         <PercentageInput id="percentage" label="Percentage" />
         <EmailInput id="email" label="Email" />
         <TextInput id="inputText" label="Texto" />
-        <GridList minColumns={1} maxColumns={5}>
-          <div className="bg-pink-800 p-4 w-screen">Item 1</div>
-          <div className="bg-pink-800 p-4 w-screen">Item 1</div>
-          <div className="bg-pink-800 p-4 w-screen">Item 1</div>
-          <div className="bg-pink-800 p-4 w-screen">Item 1</div>
-          <div className="bg-pink-800 p-4 w-screen">Item 1</div>
-          <div className="bg-pink-800 p-4 w-screen">Item 1</div>
+        <GridList numColumns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 5, "2xl": 6 }}>
+          <div className="bg-blue-500 p-4">Item 1</div>
+          <div className="bg-red-500 p-4">Item 2</div>
+          <div className="bg-green-500 p-4">Item 3</div>
+          <div className="bg-yellow-500 p-4">Item 4</div>
+          <div className="bg-purple-500 p-4">Item 5</div>
         </GridList>
       </div>
     </main>
